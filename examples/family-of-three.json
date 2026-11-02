@@ -1,0 +1,74 @@
+{
+  "_note": "EXAMPLE DATA ONLY. Countries, routes, thresholds and URLs are invented to show the method. Never reuse these numbers.",
+  "as_of": "2026-11-02",
+  "stale_days": 60,
+  "headroom_pct": 20,
+  "rates": {"EUR": 1.0, "USD": 0.9, "CNY": 0.125},
+  "household": {
+    "label": "EXAMPLE family of three",
+    "passports": ["CN"],
+    "adults": 2,
+    "children": 1,
+    "monthly_income": {"amount": 36000, "currency": "CNY", "basis": "gross", "months_documented": 4},
+    "savings": {"amount": 60000, "currency": "EUR"},
+    "goal": "permanent_residence",
+    "target_move": "2027-06-01",
+    "fx_stress_pct": 10
+  },
+  "routes": [
+    {
+      "id": "northland-remote",
+      "name": "Northland remote-work residence",
+      "country": "Northland (example)",
+      "allowed_passports": null,
+      "excluded_passports": [],
+      "income": {"amount": 2600, "currency": "EUR", "basis": "gross", "per": "month", "adult_uplift_pct": 25, "child_uplift_pct": 15, "months_required": 6},
+      "requirements": [{"text": "health insurance valid in Northland", "met": null}],
+      "exit": "convert", "pr_years": 5, "citizenship_years": 8, "submit_days_before_move": 60,
+      "sources": [
+        {"claim": "eligibility", "kind": "official", "url": "https://immigration.northland.example/remote", "fetched": "2026-10-28"},
+        {"claim": "income", "kind": "official", "url": "https://immigration.northland.example/remote#money", "fetched": "2026-10-28"}
+      ]
+    },
+    {
+      "id": "southmark-nomad",
+      "name": "Southmark digital nomad visa",
+      "country": "Southmark (example)",
+      "allowed_passports": ["EU", "US", "JP"],
+      "excluded_passports": [],
+      "income": {"amount": 3000, "currency": "EUR", "basis": "gross", "per": "month", "months_required": 3},
+      "exit": "leave", "submit_days_before_move": 30,
+      "sources": [{"claim": "eligibility", "kind": "secondary", "url": "https://blog.example/southmark", "fetched": "2026-06-01"}]
+    },
+    {
+      "id": "eastvale-bluecard",
+      "name": "Eastvale skilled-work card",
+      "country": "Eastvale (example)",
+      "allowed_passports": null,
+      "income": {"amount": 52000, "currency": "EUR", "basis": "gross", "per": "year"},
+      "requirements": [
+        {"text": "signed job offer from an Eastvale employer", "met": false},
+        {"text": "degree recognised by the Eastvale credentials office", "met": true}
+      ],
+      "exit": "convert", "pr_years": 2, "citizenship_years": 5, "submit_days_before_move": 90,
+      "sources": [
+        {"claim": "eligibility", "kind": "official", "url": "https://work.eastvale.example/card", "fetched": "2026-07-15", "rule_changed_after": "2026-10-01"},
+        {"claim": "income", "kind": "official", "url": "https://work.eastvale.example/card#salary", "fetched": "2026-10-20"}
+      ]
+    }
+  ],
+  "documents": [
+    {"name": "police certificate (notarised + apostille)", "routes": "*", "lead_days": 35, "valid_days": 90},
+    {"name": "birth certificate for the child (apostille + sworn translation)", "routes": "*", "lead_days": 40},
+    {"name": "degree evaluation", "routes": ["eastvale-bluecard"], "lead_days": 120},
+    {"name": "6 months of bank statements", "routes": ["northland-remote"], "lead_days": 5, "valid_days": 30}
+  ],
+  "trips": [
+    {"country": "Northland (example)", "from": "2027-06-01", "to": "2027-12-20"},
+    {"country": "Northland (example)", "from": "2028-01-10", "to": "2028-03-31"}
+  ],
+  "tax_rules": [
+    {"country": "Northland (example)", "threshold_days": 183, "window": "calendar"},
+    {"country": "Northland (example)", "threshold_days": 183, "window": "rolling12"}
+  ]
+}
